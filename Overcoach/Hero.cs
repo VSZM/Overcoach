@@ -2,6 +2,7 @@
 {
     enum Hero
     {
+        NONE,
         BASTION,
         DVA,
         GENJI,

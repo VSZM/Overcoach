@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
@@ -21,13 +23,19 @@ namespace Overcoach
             HARD_TEST = CvInvoke.Imread(test_file_folder + "hard_sample.jpg", LoadImageType.AnyColor);
             _imageProcessor = new ImageProcessor();
         }
-      
 
         [Test]
+        public void Test_Recognizes_Tracer()
+        {
+            var recognized_players = _imageProcessor.Recognize_Players(HARD_TEST);
+
+            Assert.Contains(Hero.TRACER, recognized_players.Select(x => x.hero).ToList());
+            Assert.Equals(1, recognized_players.Count(x => Hero.TRACER.Equals(x.hero)));
+        }
+
+        [Test, Timeout(100)]
         public void Test_Recognizes_Players()
         {
-            Console.WriteLine(Directory.GetCurrentDirectory());
-
             var recognized_players = _imageProcessor.Recognize_Players(HARD_TEST);
             
             Assert.NotNull(recognized_players);    
