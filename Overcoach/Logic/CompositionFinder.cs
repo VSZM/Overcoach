@@ -14,8 +14,8 @@ namespace Overcoach.Logic
 
         static CompositionFinder()
         {
-            EveryPossibleComposition =
-                Hero.AllHeroes.Combinations(6).Select(list_of_heroes => new TeamComposition(list_of_heroes)).ToList();
+            EveryPossibleComposition = 
+                Hero.AllHeroes.CombinationsWithRepition(6).Select(list_of_heroes => new TeamComposition(list_of_heroes)).ToList();
         }
 
         public int OffensiveCountMin { get; set; }

@@ -39,7 +39,7 @@ namespace Overcoach.Logic
             AlivePortraits = new Dictionary<Hero, Image<Gray, float>>();
             DeadPortraits = new Dictionary<Hero, Image<Gray, float>>();
 
-            foreach (Hero hero in Enum.GetValues(typeof(Hero)))
+            foreach (Hero hero in Hero.AllHeroes)
             {
                 string alive_path = HeroPortraitsFolder + hero + "_ALIVE.png";
                 string dead_path = HeroPortraitsFolder + hero + "_DEAD.png";

@@ -25,12 +25,14 @@ namespace Overcoach.Model
         public static readonly Hero TRACER = new Hero("TRACER", HeroRole.OFFENSIVE);
         public static readonly Hero WIDOWMAKER = new Hero("WIDOWMAKER", HeroRole.DEFENSIVE);
         public static readonly Hero WINSTON = new Hero("WINSTON", HeroRole.TANK);
-        public static readonly Hero ZARYA = new Hero("ZARYA", HeroRole.SUPPORT);
+        public static readonly Hero ZARYA = new Hero("ZARYA", HeroRole.TANK);
         public static readonly Hero ZENYATTA = new Hero("ZENYATTA", HeroRole.SUPPORT);
-        public static Hero[] AllHeroes =  { BASTION, DVA, GENJI, HANZO, JUNKRAT,
+        public static List<Hero> AllHeroes = new List<Hero>(new [] { BASTION, DVA, GENJI, HANZO, JUNKRAT,
             LUCIO, MCCREE, MEI, MERCY, PHARAH, REAPER, REINHARDT, ROADHOG, SOLDIER76,
-            SYMMETRA, TORBJORN, TRACER, WIDOWMAKER, WINSTON, ZARYA, ZENYATTA };
-        public static Dictionary<string, Hero> HeroByName = new Dictionary<string, Hero>(AllHeroes.Length);
+            SYMMETRA, TORBJORN, TRACER, WIDOWMAKER, WINSTON, ZARYA, ZENYATTA });
+
+
+        public static Dictionary<string, Hero> HeroByName = new Dictionary<string, Hero>(AllHeroes.Count);
 
         static Hero()
         {
@@ -52,12 +54,17 @@ namespace Overcoach.Model
         {
             Name = name;
             HeroRole = heroRole;
-            CounterValue = new Dictionary<Hero, int>(AllHeroes.Length);
+            CounterValue = new Dictionary<Hero, int>(25);
         }
 
         public int ValueAgainstTeam(TeamComposition enemy)
         {
             return enemy.Players.Sum(enemy_hero => CounterValue[enemy_hero]);
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 

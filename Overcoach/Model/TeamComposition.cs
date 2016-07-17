@@ -24,7 +24,7 @@ namespace Overcoach.Model
             DefensiveCount = players.Count(hero => hero.HeroRole == HeroRole.DEFENSIVE);
             TankCount = players.Count(hero => hero.HeroRole == HeroRole.TANK);
             SupportCount = players.Count(hero => hero.HeroRole == HeroRole.SUPPORT);
-            ContainsDuplicates = players.Count() == new HashSet<Hero>(players).Count;
+            ContainsDuplicates = players.Count() != new HashSet<Hero>(players).Count;
         }
 
         public int Value_Against(TeamComposition enemy)
