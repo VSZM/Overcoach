@@ -112,7 +112,8 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Side.cs" />
     <Compile Include="Model\TeamComposition.cs" />
-    <Compile Include="TestImageProcessor.cs" />
+    <Compile Include="Tests\TestImageProcessor.cs" />
+    <Compile Include="Tests\TestTeamComposition.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

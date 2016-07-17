@@ -65,8 +65,8 @@ namespace Overcoach.Logic
 
         public void Recognize_Players(Mat source, out TeamComposition friendly_team, out TeamComposition enemy_team)
         {
-            TeamComposition friendly = new TeamComposition();
-            TeamComposition enemy = new TeamComposition();
+            List<Hero> friendly_heroes = new List<Hero>(6);
+            List<Hero> hostile_heroes = new List<Hero>(6);
 
             string selfname = Find_Selfname(source);
 
@@ -75,7 +75,8 @@ namespace Overcoach.Logic
                 6,
                 i =>
                 {
-                    enemy.players.Add(Process_Player(i, Y_UPPER_LEFT_CORNER_OF_LEFT_PLAYER_IN_ENEMY_TEAM, source, selfname));
+                    Player player = Process_Player(i, Y_UPPER_LEFT_CORNER_OF_LEFT_PLAYER_IN_ENEMY_TEAM, source, selfname);
+                    hostile_heroes.Add(player.hero);// TODO: Add Player support, with name recognition
                 });
 
             // Process ally players
@@ -83,11 +84,12 @@ namespace Overcoach.Logic
                 6,
                 i =>
                 {
-                    friendly.players.Add(Process_Player(i, Y_UPPER_LEFT_CORNER_OF_LEFT_PLAYER_IN_ALLY_TEAM, source, selfname));
+                    Player player = Process_Player(i, Y_UPPER_LEFT_CORNER_OF_LEFT_PLAYER_IN_ALLY_TEAM, source, selfname);
+                    friendly_heroes.Add(player.hero);
                 });
 
-            friendly_team = friendly;
-            enemy_team = enemy;
+            friendly_team = new TeamComposition(friendly_heroes);
+            enemy_team = new TeamComposition(hostile_heroes);
         }
 
         private string Find_Selfname(Mat source)

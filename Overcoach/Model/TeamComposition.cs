@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Overcoach.Model
 {
@@ -15,6 +16,9 @@ namespace Overcoach.Model
 
         public TeamComposition(IEnumerable<Hero> players)
         {
+            if (players.Count() != 6)
+                throw new ArgumentException("A TeamComposition must be initialized with 6 heroes");
+
             Players = players.ToList().AsReadOnly();
             OffensiveCount = players.Count(hero => hero.HeroRole == HeroRole.OFFENSIVE);
             DefensiveCount = players.Count(hero => hero.HeroRole == HeroRole.DEFENSIVE);
