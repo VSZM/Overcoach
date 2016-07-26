@@ -13,7 +13,7 @@ using Overcoach.Model;
 namespace Overcoach.Tests
 {
     [TestFixture]
-    class TestImageProcessor
+    public sealed class TestImageProcessor
     {
         private readonly string _testFileFolder = Assembly.GetExecutingAssembly().Location.Replace("Overcoach.exe", "") + @"..\..\test_files\";
         private Mat _hardTest;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Overcoach.Model
@@ -6,6 +7,7 @@ namespace Overcoach.Model
     public class Hero
     {
         public static readonly Hero NONE = new Hero("NONE", HeroRole.NONE);
+        public static readonly Hero ANA = new Hero("ANA", HeroRole.SUPPORT);
         public static readonly Hero BASTION = new Hero("BASTION", HeroRole.DEFENSIVE);
         public static readonly Hero DVA = new Hero("DVA", HeroRole.TANK);
         public static readonly Hero GENJI = new Hero("GENJI", HeroRole.OFFENSIVE);
@@ -27,7 +29,7 @@ namespace Overcoach.Model
         public static readonly Hero WINSTON = new Hero("WINSTON", HeroRole.TANK);
         public static readonly Hero ZARYA = new Hero("ZARYA", HeroRole.TANK);
         public static readonly Hero ZENYATTA = new Hero("ZENYATTA", HeroRole.SUPPORT);
-        public static List<Hero> AllHeroes = new List<Hero>(new [] { BASTION, DVA, GENJI, HANZO, JUNKRAT,
+        public static List<Hero> AllHeroes = new List<Hero>(new [] { ANA, BASTION, DVA, GENJI, HANZO, JUNKRAT,
             LUCIO, MCCREE, MEI, MERCY, PHARAH, REAPER, REINHARDT, ROADHOG, SOLDIER76,
             SYMMETRA, TORBJORN, TRACER, WIDOWMAKER, WINSTON, ZARYA, ZENYATTA });
 
@@ -59,7 +61,13 @@ namespace Overcoach.Model
 
         public int ValueAgainstTeam(TeamComposition enemy)
         {
-            return enemy.Players.Sum(enemy_hero => CounterValue[enemy_hero]);
+            return enemy.Players.Sum(enemy_hero =>
+            {
+                if (CounterValue.ContainsKey(enemy_hero))
+                    return CounterValue[enemy_hero];
+
+                throw new InvalidOperationException("Counter value missing for |" + this + "| Against: |" + enemy_hero + "|");
+            });
         }
 
         public override string ToString()

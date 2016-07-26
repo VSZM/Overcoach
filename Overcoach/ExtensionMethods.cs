@@ -15,7 +15,7 @@ namespace Overcoach
                 elements.Skip(i + 1).Combinations(k - 1).Select(c => (new[] { e }).Concat(c)));
         }
 
-        public static List<List<T>> CombinationsWithRepition<T>(this IList<T> combinationList, int k)
+        public static List<List<T>> CombinationsWithRepition<T>(this List<T> combinationList, int k)
         {
             var combinations = new List<List<T>>();
 
@@ -43,8 +43,8 @@ namespace Overcoach
                 combinations.Add(subcombination);
             }
 
-            combinationList.RemoveAt(0);
-            combinations.AddRange(CombinationsWithRepition(combinationList, k));
+
+            combinations.AddRange(CombinationsWithRepition(combinationList.GetRange(1, combinationList.Count - 1), k));
 
             return combinations;
         }

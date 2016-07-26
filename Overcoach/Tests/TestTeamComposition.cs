@@ -9,17 +9,8 @@ using NUnit.Framework;
 namespace Overcoach.Tests
 {
     [TestFixture]
-    class TestTeamComposition
+    public sealed class TestTeamComposition : TestBase
     {
-        private TeamComposition compo2tank2supp1offense1defense = new TeamComposition(
-            new[] { Hero.BASTION, Hero.SOLDIER76, Hero.REINHARDT, Hero.WINSTON, Hero.MERCY, Hero.LUCIO });
-        private TeamComposition compo6tanks = new TeamComposition(
-            new[] { Hero.DVA, Hero.REINHARDT, Hero.ROADHOG, Hero.WINSTON, Hero.ZARYA, Hero.REINHARDT });
-        private TeamComposition compoHardSampleOpponentTeam = new TeamComposition(
-            new[] { Hero.SOLDIER76, Hero.WIDOWMAKER, Hero.ROADHOG, Hero.MCCREE, Hero.JUNKRAT, Hero.MERCY });
-        private TeamComposition compoHardSampleAllyTeam = new TeamComposition(
-            new[] { Hero.ZENYATTA, Hero.TRACER, Hero.GENJI, Hero.REINHARDT, Hero.DVA, Hero.HANZO });
-
         [Test]
         public void TestCompositionContainsDuplicates()
         {
@@ -63,6 +54,13 @@ namespace Overcoach.Tests
             Assert.AreEqual(0, compo6tanks.SupportCount);
             Assert.AreEqual(1, compoHardSampleOpponentTeam.SupportCount);
             Assert.AreEqual(1, compoHardSampleAllyTeam.SupportCount);
+        }
+
+        [Test]
+        public void TestValueAgainstTeam()
+        {
+            Assert.AreEqual(4, compoHardSampleAllyTeam.Value_Against(compoHardSampleOpponentTeam));
+            Assert.AreEqual(-4, compoHardSampleOpponentTeam.Value_Against(compoHardSampleAllyTeam));
         }
 
     }

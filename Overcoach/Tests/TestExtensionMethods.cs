@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Overcoach.Tests
 {
     [TestFixture]
-    class TestExtensionMethods
+    public sealed class TestExtensionMethods
     {
 
         [Test]

@@ -4,7 +4,7 @@ using System;
 
 namespace Overcoach.Model
 {
-    public class TeamComposition
+    public class TeamComposition : IEquatable<TeamComposition>
     {
         public IReadOnlyCollection<Hero> Players;
         public int OffensiveCount { get; private set; }
@@ -30,6 +30,34 @@ namespace Overcoach.Model
         public int Value_Against(TeamComposition enemy)
         {
             return Players.Sum(player => player.ValueAgainstTeam(enemy));
+        }
+
+        public override int GetHashCode()
+        {
+            return Players.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals((TeamComposition)obj);
+        }
+
+        public virtual bool Equals(TeamComposition other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Players.Equals(other.Players);
+        }
+
+        public override string ToString()
+        {
+            return string.Join(", ", Players);
         }
     }
 }

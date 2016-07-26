@@ -66,6 +66,10 @@
       <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.World.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.12.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -81,6 +85,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -112,7 +117,10 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Side.cs" />
     <Compile Include="Model\TeamComposition.cs" />
+    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Tests\TestCompositionFinder.cs" />
     <Compile Include="Tests\TestExtensionMethods.cs" />
+    <Compile Include="Tests\TestHero.cs" />
     <Compile Include="Tests\TestImageProcessor.cs" />
     <Compile Include="Tests\TestTeamComposition.cs" />
     <Page Include="MainWindow.xaml">
