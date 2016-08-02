@@ -66,6 +66,10 @@
       <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.World.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MathNet.Numerics, Version=3.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.3.12.0\lib\net40\MathNet.Numerics.dll</HintPath>
       <Private>True</Private>
@@ -113,10 +117,12 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Logic\CompositionFinder.cs" />
     <Compile Include="Logic\ImageProcessor.cs" />
+    <Compile Include="Logic\OWFireHeroCounterLoader.cs" />
     <Compile Include="Model\Hero.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Side.cs" />
     <Compile Include="Model\TeamComposition.cs" />
+    <Compile Include="Tests\TestOwFireHeroCounterLoader.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Tests\TestCompositionFinder.cs" />
     <Compile Include="Tests\TestExtensionMethods.cs" />

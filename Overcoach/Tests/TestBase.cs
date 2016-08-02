@@ -31,6 +31,10 @@ namespace Overcoach.Tests
 
         private void SetupHeroCounterValues()
         {
+            foreach (Hero hero in Hero.AllHeroes)
+            {
+                hero.CounterValue = new Dictionary<Hero, int>();
+            }
 
             Hero.BASTION.CounterValue[Hero.ZENYATTA] = 2;
             Hero.BASTION.CounterValue[Hero.TRACER] = -1;

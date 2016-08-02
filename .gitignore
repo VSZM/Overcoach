@@ -10,7 +10,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-Thumbs.db
+Overcoach/test_files/Thumbs.db
+*Thumbs.db
+*/Thumbs.db
+
 
 # Build results
 [Dd]ebug/
