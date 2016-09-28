@@ -14,7 +14,6 @@ namespace Overcoach.Tests
     public class TestOwFireHeroCounterLoader
     {
 
-
         [SetUp]
         public void Initialize()
         {
@@ -38,7 +37,8 @@ namespace Overcoach.Tests
         [Test]
         public void TestSomeSpecificValues()
         {
-            Assert.AreEqual(Hero.SOLDIER76.CounterValue[Hero.PHARAH], 636);
+            Assert.AreEqual(7, Hero.SOLDIER76.CounterValue[Hero.PHARAH]);
+            Assert.AreEqual(6, Hero.ANA.CounterValue[Hero.BASTION]);
         }
     }
 }

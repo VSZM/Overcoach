@@ -16,6 +16,7 @@ namespace Overcoach.Logic
         {
             EveryPossibleComposition =
                 Hero.AllHeroes.CombinationsWithRepition(6).Select(list_of_heroes => new TeamComposition(list_of_heroes)).ToList();
+
         }
 
         public int OffensiveCountMin { get; set; }
@@ -55,6 +56,24 @@ namespace Overcoach.Logic
         public List<TeamComposition> OrderCounterCompositions(TeamComposition enemy)
         {
             return _constrainedCompositions.OrderByDescending(compositon => compositon.Value_Against(enemy)).ToList();
+        }
+
+        public TeamComposition GetBestCounterComposition(TeamComposition enemy)
+        {
+            return OrderCounterCompositions(enemy).First();
+        }
+
+        public CompositionRanking GetTeamCompositionRank(TeamComposition enemy, TeamComposition ally)
+        {
+            var list_of_counters = OrderCounterCompositions(enemy);
+            var rank = list_of_counters.IndexOf(ally);
+
+            return new CompositionRanking
+            {
+                AllyValueAgaintEnemy = ally.Value_Against(enemy),
+                AllyRankingAgainstEnemy = rank,
+                TotalNumberOfPossibleCompositions = list_of_counters.Count
+            };
         }
 
         public class CompositionFinderBuilder

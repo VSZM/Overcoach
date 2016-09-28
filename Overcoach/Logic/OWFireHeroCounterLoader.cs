@@ -54,29 +54,30 @@ namespace Overcoach.Logic
 
         private void SetMatchupValue(Hero hero, Hero against)
         {
-            int value, value_mirror;
+            int positive_votes, negative_votes;
 
             if (hero.Equals(against))
-                value = value_mirror = 0;
+                positive_votes = negative_votes = 0;
             else
             {
                 var counter_node = HeroPages[hero].FirstChild.Descendants().First(
-                        node => 
+                        node =>
                             !string.IsNullOrWhiteSpace(node.InnerText) && against.PrettyName.Equals(node.InnerText));
 
-
-                value = int.Parse(counter_node.NextSibling.InnerText) -
-                        int.Parse(counter_node.NextSibling.NextSibling.InnerText);
-
-                var mirror_node = HeroPages[against].FirstChild.Descendants()
-                    .First(node => 
+                var mirror_node = HeroPages[against].FirstChild.Descendants().First(
+                        node =>
                     !string.IsNullOrWhiteSpace(node.InnerText) && hero.PrettyName.Equals(node.InnerText));
 
-                value_mirror = int.Parse(mirror_node.NextSibling.InnerText) -
-                               int.Parse(mirror_node.NextSibling.NextSibling.InnerText);
+
+                positive_votes = int.Parse(counter_node.NextSibling.InnerText)
+                                + int.Parse(mirror_node.NextSibling.NextSibling.InnerText);
+
+                negative_votes = int.Parse(counter_node.NextSibling.NextSibling.InnerText)
+                                + int.Parse(mirror_node.NextSibling.InnerText);
             }
 
-            hero.CounterValue[against] = value - value_mirror;
+            hero.CounterValue[against] = (int) Math.Round((double)(positive_votes - negative_votes) / (positive_votes + negative_votes) * scale);
         }
+
     }
 }

@@ -34,7 +34,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -118,6 +118,7 @@
     <Compile Include="Logic\CompositionFinder.cs" />
     <Compile Include="Logic\ImageProcessor.cs" />
     <Compile Include="Logic\OWFireHeroCounterLoader.cs" />
+    <Compile Include="Model\CompositionRanking.cs" />
     <Compile Include="Model\Hero.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Side.cs" />
@@ -128,7 +129,10 @@
     <Compile Include="Tests\TestExtensionMethods.cs" />
     <Compile Include="Tests\TestHero.cs" />
     <Compile Include="Tests\TestImageProcessor.cs" />
+    <Compile Include="Tests\TestScreenCaptureUtility.cs" />
     <Compile Include="Tests\TestTeamComposition.cs" />
+    <Compile Include="Utilities\ScreenCapture.cs" />
+    <Compile Include="Utilities\User32.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
